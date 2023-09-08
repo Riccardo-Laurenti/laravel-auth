@@ -27,6 +27,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth'])->group(function ()
     Route::resource('project', ProjectController::class);
 });
 
+Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth']);
 
 
 

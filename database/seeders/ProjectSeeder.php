@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Project;
 use Faker\Generator;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Project;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProjectSeeder extends Seeder
 {

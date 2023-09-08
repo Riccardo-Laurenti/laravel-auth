@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        @include('includes.alert')
+
         <div class="buttons d-flex justify-content-end">
-            <a href="{{ route('admin.project.trash') }}" class="btn btn-secondary my-4 text-end">Go to the trash</a>
+
         </div>
         <table id="projects-table" class="table table-dark table-striped">
             <thead>
                 <tr>
-
+                    <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Slug</th>
@@ -16,9 +16,9 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($projects as $project)
+                @forelse ($projects as $project)
                     <tr class="align-middle">
-                        <th scope="row">{{ $videogame->id }}</th>
+                        <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->content }}</td>
                         <td>{{ $project->slug }}</td>
@@ -27,10 +27,10 @@
                         <td>{{ $project->updated_at }}</td>
                         <td class="vert">
                             <a href="{{ route('admin.project.show', $project) }}" class="btn btn-secondary"><i
-                                    class="bi bi-eye"></i></a>
+                                    class="bi bi-eye"></i>SHOW</a>
                             <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-primary"><i
                                     class="bi bi-pen"></i></a>
-                            <form class="d-inline delete-form" action="{{ route('admin..destroy', $project) }}"
+                            <form class="d-inline delete-form" action="{{ route('admin.project.destroy', $project) }}"
                                 method="POST" data-name="{{ $project->title }}">
                                 @csrf
                                 @method('DELETE')
@@ -44,12 +44,12 @@
                             <h2>Nothing to see here..</h2>
                         </td>
                     </tr>
-                @endempty
-        </tbody>
-    </table>
-</div>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection
 
 @section('scripts')
-@vite('resources/js/delete-confirm.js');
+    @vite('resources/js/delete-confirm.js');
 @endsection
